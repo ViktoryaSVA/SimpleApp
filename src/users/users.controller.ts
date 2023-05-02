@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Query } from "@nestjs/common";
 import { Crud } from '@nestjsx/crud';
 import { User } from './entities/users.entity';
 import { UsersService } from './users.service';
@@ -29,9 +29,9 @@ export class UsersController {
     async findSubordinates(@Param('id') id: number): Promise<User[]> {
         return this.usersService.getSubordinates(id);
     }
-    @Get()
-    async getAllUsers(@Body() user: User): Promise<User[]> {
-        return this.usersService.getAllUsers(user);
+    @Get(':id')
+    async getAllUsers(@Param('id') id: number): Promise<User[]> {
+        return this.usersService.getAllUsers(id);
     }
     @Get('list')
     async getListOfUsers(): Promise<User[]> {

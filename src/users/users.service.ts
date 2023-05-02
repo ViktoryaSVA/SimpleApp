@@ -58,8 +58,8 @@ export class UsersService extends TypeOrmCrudService<User>{
         users = await this.repo.find();
         return users;
     }
-    async getAllUsers(currentUser: User): Promise<User[]> {
-        const user = await this.getUserById(currentUser.id);
+    async getAllUsers(id): Promise<User[]> {
+        const user = await this.getUserById(id);
 
         if (!user) {
             throw new NotFoundException('User not found');
