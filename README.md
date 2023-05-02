@@ -32,6 +32,12 @@ POSTGRES_PORT='some port'
 JWT_SECRET='secretKay'
 ```
 
+## List of available roles
+```bash
+    ADMIN = 'admin',
+    BOSS = 'boss',
+    REGULAR = 'regular',
+```
 
 # Examples of requests
 # CreateUser

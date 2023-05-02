@@ -25,12 +25,7 @@ export class UsersService extends TypeOrmCrudService<User>{
 
     async createUser(user: CreateUserDto): Promise<User> {
         const newUser = new User();
-        newUser.email = user.email;
-        newUser.username = user.username;
-        newUser.password = user.password;
-        newUser.role = user.role;
-        newUser.bossId = user.bossId;
-        return this.repo.save(newUser);
+        return this.repo.save({ ...newUser, ...user });
     }
     async login(loginUserDto: LoginUserDto): Promise<{ token: string }> {
         this.jwtService = new JwtService({
