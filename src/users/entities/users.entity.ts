@@ -1,21 +1,34 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+export enum UserRole {
+    ADMIN = 'admin',
+    BOSS = 'boss',
+    REGULAR = 'regular',
+}
 @Entity()
 export class User {
     @PrimaryGeneratedColumn('identity', {
-        generatedIdentity: 'ALWAYS',
+        generatedIdentity: 'ALWAYS'
     })
-    id: string;
+    id: number;
 
-    @Column({unique: true})
+    @Column()
     email: string;
 
-    @Column({unique: true})
+    @Column()
     username: string;
 
-    @Column({unique: true})
+    @Column()
     password: string;
 
-    @Column({nullable: true})
-    displayName: string;
+    @Column()
+    role: UserRole;
+
+    @Column({ nullable: true })
+    bossId?: number;
+
+    @ManyToOne(() => User, { nullable: true })
+    boss: User;
+
+    @OneToMany(() => User, user => user.boss)
+    subordinates: User[];
 }

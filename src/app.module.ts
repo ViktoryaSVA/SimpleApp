@@ -1,12 +1,13 @@
-import {UsersController} from "./users/users.controller";
+import { UsersController } from "./users/users.controller";
 import { config } from 'dotenv';
 
 config();
 
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import {UsersService} from "./users/users.service";
-import {User} from "./users/entities/users.entity";
+import { UsersService } from "./users/users.service";
+import { User } from "./users/entities/users.entity";
+import { JwtModule } from "@nestjs/jwt";
 
 @Module({
   imports: [
@@ -18,10 +19,14 @@ import {User} from "./users/entities/users.entity";
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: true
     }),
-    TypeOrmModule.forFeature([User])],
+    TypeOrmModule.forFeature([User]),
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '60s' }
+    })],
   controllers: [UsersController],
-  providers: [UsersService],
+  providers: [UsersService]
 })
 export class AppModule {}

@@ -8,7 +8,7 @@ $ npm install
 
 ```bash
 # development
-$ npm run start
+$ npm start
 
 # watch mode
 $ npm run start:dev
