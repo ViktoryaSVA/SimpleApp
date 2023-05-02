@@ -71,12 +71,18 @@ JWT_SECRET='secretKay'
 
 # Get users by id
 ### GET
-### http://localhost:3000/users/7
-
+### http://localhost:3000/users/${userId}
+### Example
+```bash
+http://localhost:3000/users/7
+```
 # Change boss
 ### PATCH
-### http://localhost:3000/users/7/change-boss
-
+### http://localhost:3000/users/${userId}/change-boss
+### Example
+```bash
+http://localhost:3000/users/7/change-boss
+```
 ``` bash 
 {
     "email": "regular545@gmail.com",
