@@ -5,6 +5,10 @@
 ```bash
 $ npm install
 ```
+## Docker configuration
+```bash
+$ docker-compose up -d
+```
 
 ## Running the app
 
@@ -19,7 +23,7 @@ $ npm start
 ```
 
 ## Configure .env file
-
+You should create the Postgres db and configure the .env file with that date.
 ```bash
 POSTGRES_USER='some user'
 
